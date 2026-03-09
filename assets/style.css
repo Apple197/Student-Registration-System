@@ -1,0 +1,65 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+:root {
+  --primary-color: #002060;
+  --secondary-color: #e5e8ef;
+  --background-color: #f0f2f6;
+  --font-family: "Poppins", sans-serif;
+  --site-width: 100%;
+  --site-spacing: 3.125rem;
+  --transtions: all 0.6s ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: var(--font-family);
+  font-weight: 700;
+  color: var(--primary-color);
+  line-height: 1;
+}
+
+p,
+textarea,
+input,
+button {
+  font-family: var(--font-family);
+}
+
+main {
+  width: var(--site-width);
+  padding-inline: var(--site-spacing);
+  background-color: var(--background-color);
+  min-height: 100dvh;
+  display: grid;
+  align-items: center;
+}
+
+/* SRS Container Styling Strats Here */
+
+#srs-container {
+  display: grid;
+  grid-template-columns: 0.75fr 1.25fr;
+  gap: 3.75rem;
+  justify-content: center;
+  align-items: center;
+}
+
+.srs-left {
+  background-color: transparent;
+}
+
+.srs-right {
+  background-color: #ffffff;
+  height: 90dvh;
+  border-radius: 2.25rem;
+}
