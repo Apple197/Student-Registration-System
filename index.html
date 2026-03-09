@@ -5,30 +5,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="">
-    <meta name="keyword" content="">
-    <meta name="author" content="">
+    <meta name="description"
+        content="A simple student registration system that helps users add, update, and remove student information such as name, student ID, email, and contact number in an organized way.">
+    <meta name="keywords" content="student registration system, student management, student records, student information system, register students, manage students>
+    <meta name=" author" content="Nazrul Hasan">
+    <meta name="robots" content="index, follow">
     <script src="./assets/script.js" defer></script>
     <link rel="stylesheet" href="./assets/style.css" />
-    <title>Student Registration System</title>
+    <title>Student Registration System | Manage Student Records Easily</title>
 </head>
 
 <body>
-    <main>
-        <section id="srs-container">
-            <div class="srs-left">
-                <header>
-                    <h1>Student Registration System.</h1>
-                    <p>You can save student details such as Student ID, Student Name, Student Contact Number and Student
-                        Email ID.
-                        also you can able to edit and delete student details from the system</p>
-                </header>
-            </div>
-            <div class="srs-right">
+    <!-- Here is the header -->
+    <header>
+        <h1>Student Registration System</h1>
+        <p>This system helps manage student information in a simple and organized way. Users can add new students,
+            update their details, or remove records when needed.</p>
+    </header>
 
-            </div>
-        </section>
-    </main>
+    <!-- Here is the form section -->
+    <section id="srs-form">
+        <form method="post">
+            <input type="text" name="studentName" placeholder="Enter student name" required />
+            <input type="number" name="studentID" placeholder="Enter student ID" required />
+            <input type="email" name="studentEmail" placeholder="Enter student email" required />
+            <input type="tel" name="studentPhone" placeholder="Enter student phone number" required />
+            <button type="submit">Add Student</button>
+        </form>
+    </section>
+
+    <!-- Here is the detail section -->
+    <section id="srs-detail">
+    </section>
+
 </body>
 
 </html>

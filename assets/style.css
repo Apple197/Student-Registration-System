@@ -35,30 +35,16 @@ button {
   font-family: var(--font-family);
 }
 
-main {
+body {
   width: var(--site-width);
   padding-inline: var(--site-spacing);
   background-color: var(--background-color);
-  min-height: 100dvh;
-  display: grid;
-  align-items: center;
 }
 
-/* SRS Container Styling Strats Here */
+/* SRS form styling starts here */
 
-#srs-container {
-  display: grid;
-  grid-template-columns: 0.75fr 1.25fr;
-  gap: 3.75rem;
-  justify-content: center;
-  align-items: center;
-}
-
-.srs-left {
-  background-color: transparent;
-}
-
-.srs-right {
+/* SRS Details Styling Strats Here */
+#srs-detail {
   background-color: #ffffff;
   height: 90dvh;
   border-radius: 2.25rem;
