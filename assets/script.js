@@ -1,8 +1,7 @@
 const studentForm = document.querySelector("#srs-form form");
 let studentData = JSON.parse(localStorage.getItem("students")) || [];
 studentForm.addEventListener("submit", formSubmissionHandler);
-
-console.log(studentData);
+window.addEventListener("DOMContentLoaded", displayStudentDetail);
 
 function formSubmissionHandler(e) {
   e.preventDefault();
@@ -19,5 +18,15 @@ function studentAdd(student) {
 }
 
 function displayStudentDetail() {
-  const studentInfo = JSON.parse(localStorage.getItem("students"));
+  const tableBody = document.querySelector("#srs-detail tbody");
+  tableBody.innerHTML = "";
+  for (const studentInfo of studentData) {
+    const tableRow = document.createElement("tr");
+    for (const key in studentInfo) {
+      const tableCell = document.createElement("td");
+      tableCell.textContent = studentInfo[key];
+      tableRow.appendChild(tableCell);
+    }
+    tableBody.append(tableRow);
+  }
 }
