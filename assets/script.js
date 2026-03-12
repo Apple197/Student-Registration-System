@@ -1,7 +1,7 @@
 const studentForm = document.querySelector("#srs-form form");
 let studentData = JSON.parse(localStorage.getItem("students")) || [];
-studentForm.addEventListener("submit", formSubmissionHandler);
 window.addEventListener("DOMContentLoaded", displayStudentDetail);
+studentForm.addEventListener("submit", formSubmissionHandler);
 
 function formSubmissionHandler(e) {
   e.preventDefault();
@@ -13,6 +13,7 @@ function formSubmissionHandler(e) {
 }
 
 function studentAdd(student) {
+  student.studentAction = "action";
   studentData.push(student);
   localStorage.setItem("students", JSON.stringify(studentData));
 }
@@ -20,13 +21,40 @@ function studentAdd(student) {
 function displayStudentDetail() {
   const tableBody = document.querySelector("#srs-detail tbody");
   tableBody.innerHTML = "";
-  for (const studentInfo of studentData) {
+
+  for (const [index, studentInfo] of studentData.entries()) {
     const tableRow = document.createElement("tr");
+    const editButton = document.createElement("button");
+    const trashButton = document.createElement("button");
+    const editIcon = document.createElement("img");
+    const trashIcon = document.createElement("img");
+    editIcon.src = "./assets/icon/edit.svg";
+    trashIcon.src = "./assets/icon/trash.svg";
+    editIcon.alt = "Edit Icon";
+    trashIcon.alt = "Trash Icon";
+    editButton.setAttribute("id", "edit-student");
+    trashButton.addEventListener("click", trashStudent);
+    editButton.appendChild(editIcon);
+    trashButton.appendChild(trashIcon);
+
     for (const key in studentInfo) {
       const tableCell = document.createElement("td");
-      tableCell.textContent = studentInfo[key];
+      if (studentInfo[key] !== "action") {
+        tableCell.textContent = studentInfo[key];
+      } else {
+        editButton.value = index;
+        trashButton.value = index;
+        tableCell.append(editButton, trashButton);
+      }
       tableRow.appendChild(tableCell);
+      tableBody.appendChild(tableRow);
     }
-    tableBody.append(tableRow);
   }
+}
+
+function trashStudent(e) {
+  console.log(e.target.parentElement.value);
+  studentData.splice(e.target.parentElement.value, 1);
+  localStorage.setItem("students", JSON.stringify(studentData));
+  displayStudentDetail();
 }
