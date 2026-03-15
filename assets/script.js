@@ -1,4 +1,5 @@
 const studentForm = document.querySelector("#srs-form form");
+const editForm = document.querySelector("#srs-edit-form");
 let studentData = JSON.parse(localStorage.getItem("students")) || [];
 window.addEventListener("DOMContentLoaded", displayStudentDetail);
 studentForm.addEventListener("submit", formSubmissionHandler);
@@ -13,7 +14,6 @@ function formSubmissionHandler(e) {
 }
 
 function studentAdd(student) {
-  student.studentAction = "action";
   studentData.push(student);
   localStorage.setItem("students", JSON.stringify(studentData));
 }
@@ -22,39 +22,45 @@ function displayStudentDetail() {
   const tableBody = document.querySelector("#srs-detail tbody");
   tableBody.innerHTML = "";
 
-  for (const [index, studentInfo] of studentData.entries()) {
+  for (let actionKey = 0; actionKey < studentData.length; actionKey++) {
     const tableRow = document.createElement("tr");
-    const editButton = document.createElement("button");
-    const trashButton = document.createElement("button");
-    const editIcon = document.createElement("img");
-    const trashIcon = document.createElement("img");
-    editIcon.src = "./assets/icon/edit.svg";
-    trashIcon.src = "./assets/icon/trash.svg";
-    editIcon.alt = "Edit Icon";
-    trashIcon.alt = "Trash Icon";
-    editButton.setAttribute("id", "edit-student");
-    trashButton.addEventListener("click", trashStudent);
-    editButton.appendChild(editIcon);
-    trashButton.appendChild(trashIcon);
+    tableRow.dataset.rowId = actionKey;
 
-    for (const key in studentInfo) {
+    const actionColumn = document.createElement("td");
+    actionColumn.append(
+      addActionMenu(editStudent, "./assets/icon/edit.svg", "Edit Icon"),
+      addActionMenu(trashStudent, "./assets/icon/trash.svg", "Trash Icon"),
+    );
+
+    for (const key in studentData[actionKey]) {
       const tableCell = document.createElement("td");
-      if (studentInfo[key] !== "action") {
-        tableCell.textContent = studentInfo[key];
-      } else {
-        editButton.value = index;
-        trashButton.value = index;
-        tableCell.append(editButton, trashButton);
-      }
+      tableCell.textContent = studentData[actionKey][key];
       tableRow.appendChild(tableCell);
-      tableBody.appendChild(tableRow);
     }
+    tableRow.appendChild(actionColumn);
+    tableBody.appendChild(tableRow);
   }
 }
 
+function addActionMenu(action, icon, altText) {
+  const actionButton = document.createElement("button");
+  const actionIcon = document.createElement("img");
+  actionIcon.src = icon;
+  actionIcon.alt = altText;
+  actionButton.appendChild(actionIcon);
+  actionButton.addEventListener("click", action);
+  return actionButton;
+}
+
 function trashStudent(e) {
-  console.log(e.target.parentElement.value);
-  studentData.splice(e.target.parentElement.value, 1);
+  studentData.splice(e.target.closest("tr").dataset.rowId, 1);
   localStorage.setItem("students", JSON.stringify(studentData));
   displayStudentDetail();
+}
+
+function editStudent(e) {
+  const studentInfo = studentData[e.target.closest("tr").dataset.rowId];
+  let setFormData = new FormData(editForm.querySelector("form"));
+  setFormData.set("studentName", "Hello");
+  editForm.classList.toggle("activeEditForm");
 }
