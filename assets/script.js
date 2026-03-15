@@ -58,9 +58,25 @@ function trashStudent(e) {
   displayStudentDetail();
 }
 
+let currentEditIndex = null;
 function editStudent(e) {
-  const studentInfo = studentData[e.target.closest("tr").dataset.rowId];
-  let setFormData = new FormData(editForm.querySelector("form"));
-  setFormData.set("studentName", "Hello");
-  editForm.classList.toggle("activeEditForm");
+  currentEditIndex = e.target.closest("tr").dataset.rowId;
+  const studentInfo = studentData[currentEditIndex];
+  editForm.querySelectorAll("input").forEach((currInput) => {
+    currInput.value = studentInfo[currInput.getAttribute("name")];
+  });
+
+  editForm.classList.add("activeEditForm");
+
+  editForm.querySelector("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    let editedStudentInfo = new FormData(e.target);
+    editedStudentInfo = Object.fromEntries(editedStudentInfo.entries());
+    studentData[currentEditIndex] = {
+      ...editedStudentInfo,
+    };
+    localStorage.setItem("students", JSON.stringify(studentData));
+    editForm.classList.remove("activeEditForm");
+    displayStudentDetail();
+  });
 }
