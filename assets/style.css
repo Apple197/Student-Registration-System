@@ -55,7 +55,7 @@ body {
   display: none;
 }
 
-.activeEditForm .srs-edit-wrapper {
+.active-edit-form .srs-edit-wrapper {
   display: block;
   position: fixed;
   top: 50%;
