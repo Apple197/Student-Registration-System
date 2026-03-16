@@ -60,16 +60,19 @@ function trashStudent(e) {
 
 let currentEditIndex = null;
 function editStudent(e) {
-  currentEditIndex = e.target.closest("tr").dataset.rowId;
+  currentEditIndex = Number(e.target.closest("tr").dataset.rowId);
   const studentInfo = studentData[currentEditIndex];
   editForm.querySelectorAll("input").forEach((currInput) => {
     currInput.value = studentInfo[currInput.getAttribute("name")];
   });
 
   editForm.classList.add("activeEditForm");
+}
 
-  editForm.querySelector("form").addEventListener("submit", (e) => {
-    e.preventDefault();
+// Attach the submit handler only once
+editForm.querySelector("form").addEventListener("submit", (e) => {
+  e.preventDefault();
+  if (currentEditIndex !== null) {
     let editedStudentInfo = new FormData(e.target);
     editedStudentInfo = Object.fromEntries(editedStudentInfo.entries());
     studentData[currentEditIndex] = {
@@ -78,5 +81,6 @@ function editStudent(e) {
     localStorage.setItem("students", JSON.stringify(studentData));
     editForm.classList.remove("activeEditForm");
     displayStudentDetail();
-  });
-}
+    currentEditIndex = null;
+  }
+});

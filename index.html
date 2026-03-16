@@ -30,7 +30,8 @@
             <input type="text" name="studentName" placeholder="Enter student name" required />
             <input type="number" name="studentID" placeholder="Enter student ID" required />
             <input type="email" name="studentEmail" placeholder="Enter student email" required />
-            <input type="tel" name="studentPhone" placeholder="Enter student phone number" required />
+            <input type="tel" name="studentPhone" placeholder="Enter student phone number" pattern="[0-9]{10,15}"
+                title="Contact number must contain at least 10 digits" required />
             <button type="submit">Add Student</button>
         </form>
     </section>
