@@ -120,6 +120,7 @@ editForm.querySelector("form").addEventListener("submit", (e) => {
     // Validate the updated name before closing the edit UI.
     if (STUDENT_NAME_REGEX.test(editedStudentInfo.studentName.trim())) {
       editForm.classList.remove("active-edit-form");
+      localStorage.setItem("students", JSON.stringify(studentData));
       displayStudentDetail();
       currentEditIndex = null;
     } else {
