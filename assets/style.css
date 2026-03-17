@@ -39,15 +39,127 @@ body {
   width: var(--site-width);
   padding-inline: var(--site-spacing);
   background-color: var(--background-color);
+  display: grid;
+  grid-template-areas:
+    "header details"
+    "form details";
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  justify-content: center;
+  min-height: 100dvh;
+  column-gap: 3.25rem;
+  row-gap: 0;
+}
+
+form input {
+  font-size: 1rem;
+  font-family: var(--font-family);
+  width: 100%;
+  margin-block-end: 0.75rem;
+  background-color: transparent;
+  border: 0.1rem solid var(--primary-color);
+  padding-inline: 1.25rem;
+  padding-block: 0.9rem;
+  border-radius: 1rem;
+  transition: var(--transtions);
+}
+
+form button {
+  font-size: 1rem;
+  font-family: var(--font-family);
+  width: 100%;
+  background-color: var(--primary-color);
+  color: #ffffff;
+  border: none;
+  padding-block: 0.9rem;
+  border-radius: 1rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: var(--transtions);
+}
+
+form button:hover {
+  background-color: #001040;
+}
+
+form input:focus {
+  outline: none;
+  border-color: #001040;
+}
+
+/* Chrome, Safari, Edge, Opera */
+input[type="number"]::-webkit-outer-spin-button,
+input[type="number"]::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type="number"] {
+  -moz-appearance: textfield;
+  appearance: textfield; /* Standard property for newer browsers */
+}
+
+/* SRS Header Styling starts here */
+header {
+  grid-area: header;
+  align-self: end;
+  margin-block-end: 2rem;
+}
+
+header h1 {
+  font-size: 2.5rem;
+  margin-block-end: 0.5rem;
 }
 
 /* SRS form styling starts here */
+#srs-form {
+  grid-area: form;
+  align-self: start;
+}
 
 /* SRS Details Styling Strats Here */
 #srs-detail {
   background-color: #ffffff;
   height: 90dvh;
   border-radius: 2.25rem;
+  grid-area: details;
+  padding: 2rem;
+}
+
+#srs-detail table {
+  width: 100%;
+  border-collapse: collapse;
+  font-family: var(--font-family);
+}
+
+#srs-detail table thead {
+  font-size: 1.1rem;
+  border-top: 0.1rem solid var(--primary-color);
+  border-bottom: 0.1rem solid var(--primary-color);
+  color: var(--primary-color);
+}
+
+#srs-detail table thead th:not(:nth-child(2), :nth-child(4), :nth-child(5)) {
+  padding-block: 0.75rem;
+  padding-inline: 0.25rem;
+  text-align: left;
+}
+
+#srs-detail table tbody tr {
+  padding-block: 0.5rem;
+  padding-inline: 0.25rem;
+  text-align: left;
+  border-bottom: 0.09rem solid #0020604c;
+}
+
+#srs-detail table caption {
+  font-size: 1.25rem;
+  font-family: var(--font-family);
+  font-weight: 700;
+  text-align: left;
+  margin-block-end: 1.25rem;
+  color: var(--primary-color);
 }
 
 /* SRS edit student form styling here */
