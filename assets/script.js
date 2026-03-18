@@ -128,3 +128,10 @@ editForm.querySelector("form").addEventListener("submit", (e) => {
     }
   }
 });
+
+// Close the edit form.
+editForm
+  .querySelector(".srs-edit-wrapper img")
+  .addEventListener("click", () => {
+    editForm.classList.remove("active-edit-form");
+  });

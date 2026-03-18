@@ -59,13 +59,32 @@
     <section id="srs-edit-form">
         <div class="srs-edit-wrapper">
             <form method="post">
-                <input type="text" name="studentName" required />
-                <input type="number" name="studentID" required />
-                <input type="email" name="studentEmail" required />
-                <input type="tel" name="studentPhone" required />
+                <div>
+                    <div>
+                        <label for="studentName">Student Name</label>
+                        <input type="text" name="studentName" required />
+                    </div>
+                    <div>
+                        <label for="studentID">Student ID</label>
+                        <input type="number" name="studentID" required />
+                    </div>
+                </div>
+                <div>
+                    <div>
+                        <label for="studentEmail">Student Email</label>
+                        <input type="email" name="studentEmail" required />
+                    </div>
+                    <div>
+                        <label for="studentPhone">Student Phone</label>
+                        <input type="tel" name="studentPhone" pattern="[0-9]{10,15}"
+                            title="Contact number must contain at least 10 digits" required />
+                    </div>
+                </div>
                 <button type="submit">Save</button>
             </form>
+            <img src="./assets/icon/close.svg" alt="close icon" />
         </div>
+        <div class="edit-form-overlay"></div>
     </section>
 
 </body>
