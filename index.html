@@ -27,10 +27,10 @@
     <!-- Here is the form section -->
     <section id="srs-form">
         <form method="post">
-            <input type="text" name="studentName" placeholder="Enter student name" required />
-            <input type="number" name="studentID" placeholder="Enter student ID" required />
-            <input type="email" name="studentEmail" placeholder="Enter student email" required />
-            <input type="tel" name="studentPhone" placeholder="Enter student phone number" pattern="[0-9]{10,15}"
+            <input type="text" name="studentName" placeholder="Student Name" required />
+            <input type="number" name="studentID" placeholder="Student ID" required />
+            <input type="email" name="studentEmail" placeholder="Student Email" required />
+            <input type="tel" name="studentPhone" placeholder="Student Contact Number" pattern="[0-9]{10,15}"
                 title="Contact number must contain at least 10 digits" required />
             <button type="submit">Add Student</button>
         </form>
@@ -45,7 +45,7 @@
                     <th>Name</th>
                     <th>Student ID</th>
                     <th>Email</th>
-                    <th>Phone</th>
+                    <th>Contact Number</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -75,7 +75,7 @@
                         <input type="email" name="studentEmail" required />
                     </div>
                     <div>
-                        <label for="studentPhone">Student Phone</label>
+                        <label for="studentPhone">Student Contact Number</label>
                         <input type="tel" name="studentPhone" pattern="[0-9]{10,15}"
                             title="Contact number must contain at least 10 digits" required />
                     </div>

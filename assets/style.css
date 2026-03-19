@@ -335,6 +335,10 @@ header h1 {
   .srs-edit-wrapper form {
     width: 20rem;
   }
+
+  .srs-edit-wrapper form > div:first-child {
+    margin-block-end: 0;
+  }
 }
 
 @media screen and (max-width: 768px) {
@@ -344,6 +348,10 @@ header h1 {
 
   body {
     padding-block: 3.125rem;
+  }
+
+  #srs-detail {
+    border-radius: 1.25rem;
   }
 
   header h1 {
