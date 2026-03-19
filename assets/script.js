@@ -21,10 +21,9 @@ function formSubmissionHandler(e) {
   // Validate the student name.
   if (STUDENT_NAME_REGEX.test(formDetails.studentName.trim())) {
     studentAdd(formDetails)
-      ? toastMessage("success", "student added successfully.")
+      ? toastMessage("success", "Student added successfully.")
       : toastMessage("error", "Something went wrong. Please try again.");
     e.target.reset();
-    displayStudentDetail();
   } else {
     toastMessage(
       "error",
@@ -38,6 +37,7 @@ function studentAdd(student) {
     // Add the new student to the in-memory array and persist to localStorage.
     studentData.push(student);
     localStorage.setItem("students", JSON.stringify(studentData));
+    displayStudentDetail();
     return true;
   } catch (error) {
     return false;
@@ -86,12 +86,17 @@ function addActionMenu(action, icon, altText) {
 }
 
 function trashStudent(e) {
-  // Remove the student from the data array by using the row's stored index.
-  studentData.splice(Number(e.target.closest("tr").dataset.rowId), 1);
+  try {
+    // Remove the student from the data array by using the row's stored index.
+    studentData.splice(Number(e.target.closest("tr").dataset.rowId), 1);
 
-  // Persist the updated list and refresh the display.
-  localStorage.setItem("students", JSON.stringify(studentData));
-  displayStudentDetail();
+    // Persist the updated list and refresh the display.
+    localStorage.setItem("students", JSON.stringify(studentData));
+    displayStudentDetail();
+    toastMessage("success", "Student deleted successfully.");
+  } catch (error) {
+    toastMessage("error", "Something went wrong. Please try again.");
+  }
 }
 
 let currentEditIndex = null;
