@@ -1,5 +1,6 @@
 const studentForm = document.querySelector("#srs-form form");
 const editForm = document.querySelector("#srs-edit-form");
+const toastMessageSection = document.querySelector("#srs-toast-message");
 
 // Load previously saved student data from localStorage (if any), otherwise start with an empty array.
 let studentData = JSON.parse(localStorage.getItem("students")) || [];
@@ -19,11 +20,16 @@ function formSubmissionHandler(e) {
 
   // Validate the student name.
   if (STUDENT_NAME_REGEX.test(formDetails.studentName.trim())) {
-    studentAdd(formDetails); // Save the student.
+    studentAdd(formDetails)
+      ? toastMessage("success", "student added successfully.")
+      : toastMessage("error", "Something went wrong. Please try again.");
     e.target.reset();
     displayStudentDetail();
   } else {
-    alert("Please enter a valid student name (letters and spaces only).");
+    toastMessage(
+      "error",
+      "Please enter a valid student name (letters and spaces only).",
+    );
   }
 }
 
@@ -123,8 +129,12 @@ editForm.querySelector("form").addEventListener("submit", (e) => {
       localStorage.setItem("students", JSON.stringify(studentData));
       displayStudentDetail();
       currentEditIndex = null;
+      toastMessage("success", "Student edited successfully.");
     } else {
-      alert("Please enter a valid student name (letters and spaces only).");
+      toastMessage(
+        "error",
+        "Please enter a valid student name (letters and spaces only).",
+      );
     }
   }
 });
@@ -135,3 +145,22 @@ editForm
   .addEventListener("click", () => {
     editForm.classList.remove("active-edit-form");
   });
+
+// Toast message function
+function toastMessage(type = "error", message) {
+  const toastMessageContainer = document.createElement("div");
+  toastMessageContainer.textContent = message;
+  toastMessageContainer.classList.add(type);
+  toastMessageSection.appendChild(toastMessageContainer);
+
+  setTimeout(() => {
+    toastMessageContainer.classList.add("show");
+  }, 50);
+
+  setTimeout(() => {
+    toastMessageContainer.classList.remove("show");
+    setTimeout(() => {
+      toastMessageSection.removeChild(toastMessageContainer);
+    }, 600);
+  }, 3000);
+}
