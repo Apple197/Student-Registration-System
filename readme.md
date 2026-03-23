@@ -50,6 +50,3 @@ The project focuses on creating a clean and user-friendly interface for handling
 ### Repository Link
 
 [https://github.com/Apple197/Student-Registration-System.git](https://github.com/Apple197/Student-Registration-System.git)
-
-
-
